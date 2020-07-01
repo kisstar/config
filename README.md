@@ -5,5 +5,5 @@
 ## install
 
 ```bash
-sh <(curl -L https://github.com/kisstar/config/tree/master/lib/bin/install.sh)
+sh <(curl -L https://raw.githubusercontent.com/kisstar/config/master/lib/bin/install.sh)
 ```
