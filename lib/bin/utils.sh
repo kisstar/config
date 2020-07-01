@@ -1,29 +1,3 @@
-function print_info() {
-  echo $*
-}
-
-function print_err() {
-  echo "\033[31m$*\033[0m"
-}
-
-function print_warn() {
-  echo "\033[33m$*\033[0m"
-}
-
-function print_success() {
-  echo "\033[32m$*\033[0m"
-}
-
-function clone_prj() {
-  if [ `command -v git` ]
-  then
-    git clone $*
-  else
-    print_err 'Sorry, you need to install git first'
-    exit
-  fi
-}
-
 function ensure_no_folder() {
   filename=$1
   name=${filename##*/}

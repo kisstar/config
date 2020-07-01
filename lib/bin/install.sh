@@ -5,7 +5,31 @@ readonly KS_CONFIG_DIR=.ks-config
 
 config_arr=('vim')
 
-source "$KS_CONFIG_ROOT/$KS_CONFIG_DIR/lib/bin/utils.sh"
+function print_info() {
+  echo $*
+}
+
+function print_err() {
+  echo "\033[31m$*\033[0m"
+}
+
+function print_warn() {
+  echo "\033[33m$*\033[0m"
+}
+
+function print_success() {
+  echo "\033[32m$*\033[0m"
+}
+
+function clone_prj() {
+  if [ `command -v git` ]
+  then
+    git clone $*
+  else
+    print_err 'Sorry, you need to install git first'
+    exit
+  fi
+}
 
 function includes() {
   for item in ${config_arr[@]}
@@ -37,6 +61,7 @@ function choose_conf() {
 
 cd $KS_CONFIG_ROOT
 
+# Pull project
 if [ -d $KS_CONFIG_DIR ]
 then
   tmp_str=`print_info 'You have downloaded before. Do you need to download again? [y/n] '`                                                                                                                      read -p "$tmp_str" ans
@@ -48,6 +73,9 @@ then
 else
   clone_prj https://github.com/kisstar/config.git $KS_CONFIG_DIR
 fi
+
+# Call public script
+source "$KS_CONFIG_ROOT/$KS_CONFIG_DIR/lib/bin/utils.sh"
 
 if [ "$1" ]
 then
