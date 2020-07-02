@@ -1,0 +1,18 @@
+{
+  "singleQuote": true,
+  "jsxSingleQuote": true,
+  "trailingComma": "all",
+  "semi": false,
+  "printWidth": 100,
+  "proseWrap": "never",
+  "endOfLine": "lf",
+  "arrowParens": "avoid",
+  "overrides": [
+    {
+      "files": ".{prettierrc,stylelintrc,eslintrc,markdownlintrc,huskyrc,lintstagedrc}",
+      "options": {
+        "parser": "json"
+      }
+    }
+  ]
+}
