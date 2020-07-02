@@ -41,7 +41,7 @@ function includes() {
 }
 
 function choose_conf() {
-  tmp_str=`print_info 'Please specify the configuration you want to use [vim] '`
+  tmp_str=`print_info 'Please specify the configuration you want to use [vim/npm/???] '`
   while true
   do
     read -p "$tmp_str" ans
