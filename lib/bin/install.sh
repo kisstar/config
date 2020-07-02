@@ -1,8 +1,9 @@
 #!/bin/bash
 
 readonly KS_CONFIG_ROOT=$HOME
-readonly KS_CONFIG_DIR=.ks-config
+readonly KS_CONFIG_DIR_NAME=.ks-config
 
+prj_dir=$KS_CONFIG_ROOT/$KS_CONFIG_DIR_NAME
 config_arr=('vim')
 
 function print_info() {
@@ -47,7 +48,7 @@ function choose_conf() {
     then
       if includes $ans
       then
-        source "$KS_CONFIG_ROOT/$KS_CONFIG_DIR/lib/bin/$ans.sh"
+        source "$prj_dir/lib/bin/$ans.sh"
         break
       else
         print_err 'Sorry, the configuration you specified is not supported'
@@ -62,20 +63,21 @@ function choose_conf() {
 cd $KS_CONFIG_ROOT
 
 # Pull project
-if [ -d $KS_CONFIG_DIR ]
+if [ -d $KS_CONFIG_DIR_NAME ]
 then
-  tmp_str=`print_info 'You have downloaded before. Do you need to download again? [y/n] '`                                                                                                                      read -p "$tmp_str" ans
+  tmp_str=`print_info 'You have downloaded before. Do you need to download again? [y/n] '`
+  read -p "$tmp_str" ans
   if [ "$ans" == 'y' ]
   then
-    rm -rf $KS_CONFIG_DIR
-    clone_prj https://github.com/kisstar/config.git $KS_CONFIG_DIR
+    rm -rf $KS_CONFIG_DIR_NAME
+    clone_prj https://github.com/kisstar/config.git $KS_CONFIG_DIR_NAME
   fi
 else
-  clone_prj https://github.com/kisstar/config.git $KS_CONFIG_DIR
+  clone_prj https://github.com/kisstar/config.git $KS_CONFIG_DIR_NAME
 fi
 
 # Call public script
-source "$KS_CONFIG_ROOT/$KS_CONFIG_DIR/lib/bin/utils.sh"
+source "$prj_dir/lib/bin/utils.sh"
 
 if [ "$1" ]
 then
