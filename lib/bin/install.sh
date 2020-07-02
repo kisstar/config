@@ -3,8 +3,9 @@
 readonly KS_CONFIG_ROOT=$HOME
 readonly KS_CONFIG_DIR_NAME=.ks-config
 
+cwd=$(pwd)
 prj_dir=$KS_CONFIG_ROOT/$KS_CONFIG_DIR_NAME
-config_arr=('vim')
+config_arr=('vim' 'npm')
 
 function print_info() {
   echo $*
@@ -48,7 +49,7 @@ function choose_conf() {
     then
       if includes $ans
       then
-        source "$prj_dir/lib/bin/$ans.sh"
+        source "$prj_dir/lib/bin/modules/$ans.sh"
         break
       else
         print_err 'Sorry, the configuration you specified is not supported'
@@ -79,17 +80,18 @@ fi
 # Call public script
 source "$prj_dir/lib/bin/utils.sh"
 
+# Start configuration
 if [ "$1" ]
 then
   if includes $1
   then
-    source "./lib/bin/$1.sh"
+    source "$prj_dir/lib/bin/modules/$1.sh"
   else
     print_err 'Sorry, the configuration you specified is not supported'
     choose_conf
   fi
 else
-    choose_conf
+  choose_conf
 fi
 
 print_info ""
