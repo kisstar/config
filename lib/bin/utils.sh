@@ -74,3 +74,14 @@ function is_conf_global() {
     is_conf_global
   fi
 }
+
+function only_simple() {
+  tmp_str=`print_info 'Do you want to set only the simplest configuration? [y/n] '`
+  read -p "$tmp_str" ans
+  if [ "$ans" == 'y' ]
+  then
+    return 0
+  else
+    return 1
+  fi
+}
