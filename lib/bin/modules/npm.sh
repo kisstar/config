@@ -3,40 +3,14 @@
 npm_rc=~/.npmrc
 tip="Start generating configuration file"
 
-function conf_local() {
-  npm_rc=$cwd/.npmrc
-  tip="Generate configuration file to $cwd"
-}
-
-function conf_global() {
+if is_conf_global
+then
   npm_rc=~/.npmrc
   tip="Generate configuration file to $HOME"
-}
-
-function choose_conf_range() {
-  tmp_str=`print_info 'Please specify the scope to be configured [global/local] '`
-  if [ "$1" ]
-  then
-    tmp_str=`print_info 'Please specify the correct scope option [global/local] '`
-  fi
-  read -p "$tmp_str" ans
-  if [ "$ans" ]
-  then
-    if [ "$ans" == 'global' ]
-    then
-      conf_global
-    elif [ "$ans" == 'local' ]
-    then
-      conf_local
-    else
-      choose_conf_range "Retry"
-    fi
-  else
-    conf_local
-  fi
-}
-
-choose_conf_range
+else
+  npm_rc=$cwd/.npmrc
+  tip="Generate configuration file to $cwd"
+fi
 
 # Check .npmrc
 ensure_no_file $npm_rc
