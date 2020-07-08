@@ -5,7 +5,7 @@ readonly KS_CONFIG_DIR_NAME=.ks-config
 
 cwd=$(pwd)
 prj_dir=$KS_CONFIG_ROOT/$KS_CONFIG_DIR_NAME
-config_arr=('vim' 'npm')
+config_arr=('vim' 'npm' 'git')
 
 function print_info() {
   echo $*
