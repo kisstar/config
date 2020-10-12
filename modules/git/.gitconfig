@@ -1,0 +1,7 @@
+[format]
+  pretty = %C(yellow bold)%d%Creset%n%C(yellow)%H%Creset on %C(cyan bold)%ad%Creset by %C(magenta bold)%aN%Creset%n%n%C(white bold)%B%Creset%n
+[log]
+  date = format:%d-%m-%Y, %H:%M
+[alias]
+  loger = log --oneline --graph --color --decorate --pretty
+  logest = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
