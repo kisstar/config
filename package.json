@@ -1,8 +1,11 @@
 {
-  "name": "@ks/config",
+  "name": "config",
   "version": "0.0.1",
   "description": "Basic configuration of common tools",
   "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "commit": "git-cz",
     "lint:md": "markdownlint **/*.md --ignore node_modules --ignore CHANGELOG",
