@@ -1,6 +1,27 @@
+// See: https://code.visualstudio.com/docs/getstarted/settings
+
 {
+  // 指定 Tab Size
   "editor.tabSize": 2,
+  // 设置 Font Size
+  "editor.fontSize": 12,
+  // 每次保存后自动格式化
+  "editor.formatOnSave": false,
+  // 竖条分割条位置
+  "editor.rulers": [80],
+  // 支持 snippet 按 tab 自动完成
+  "editor.tabCompletion": "on",
+  // 是否显示代码行号
+  "editor.lineNumbers": "on",
+  // 设置默认的格式化工具: https://github.com/prettier/prettier-vscode
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // 保存的时候自动修复 ESLint/ESLint 插件中可自动修复的错误
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
   "files.eol": "\n",
   "files.insertFinalNewline": true,
-  "files.trimTrailingWhitespace": true
+  "files.trimTrailingWhitespace": true,
+  // 失去焦点后自动保存
+  "files.autoSave": "onFocusChange"
 }
