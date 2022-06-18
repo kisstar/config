@@ -1,12 +1,3 @@
-function clone_prj() {
-  if [ $(command -v git) ]; then
-    git clone $*
-  else
-    print_err 'Sorry, you need to install git first.'
-    exit
-  fi
-}
-
 function is_conf_global() {
   tmp_str=$(print_info 'Please specify the scope to be configured [global/local] ')
 
