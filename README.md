@@ -1,8 +1,8 @@
 # config
 
-常用工具的基本配置
+Quick installation and configuration of common tools.
 
-## install
+## Usage
 
 ```bash
 sh <(curl -L https://raw.githubusercontent.com/kisstar/config/master/lib/bin/install.sh)
