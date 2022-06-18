@@ -6,10 +6,10 @@ if is_conf_global
 then
   ensure_no_file $yarn_rc
   print_info "Link Yarn related files to $HOME"
-  ln -s "$KS_CONFIG_ROOT/$KS_CONFIG_DIR_NAME/modules/yarn/.yarnrc" $yarn_rc
+  ln -s "KS_PROJECT_DIR/modules/yarn/.yarnrc" $yarn_rc
 else
-  yarn_rc=$cwd/.yarnrc
+  yarn_rc=$KS_CWD/.yarnrc
   ensure_no_file $yarn_rc
-  print_info "Generate configuration file to $cwd"
-  cp "$KS_CONFIG_ROOT/$KS_CONFIG_DIR_NAME/modules/yarn/.yarnrc" $yarn_rc
+  print_info "Generate configuration file to $KS_CWD"
+  cp "KS_PROJECT_DIR/modules/yarn/.yarnrc" $yarn_rc
 fi

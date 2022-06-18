@@ -14,10 +14,10 @@ print_info "Link Vim related files to $HOME"
 
 if only_simple
 then
-  ln -s "$KS_CONFIG_ROOT/$KS_CONFIG_DIR_NAME/modules/vim/.simple.vimrc" $vim_rc
+  ln -s "KS_PROJECT_DIR/modules/vim/.simple.vimrc" $vim_rc
 else
-  ln -s "$KS_CONFIG_ROOT/$KS_CONFIG_DIR_NAME/modules/vim/.vim" $vim_folder
-  ln -s "$KS_CONFIG_ROOT/$KS_CONFIG_DIR_NAME/modules/vim/.vimrc" $vim_rc
+  ln -s "KS_PROJECT_DIR/modules/vim/.vim" $vim_folder
+  ln -s "KS_PROJECT_DIR/modules/vim/.vimrc" $vim_rc
   # Install all plugins
   vim +'PlugInstall --sync' +qa
 fi

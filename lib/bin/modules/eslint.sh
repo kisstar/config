@@ -1,6 +1,6 @@
 #!/bin/bash
 
-eslint_file=$cwd/.eslintrc.js
+eslint_file=$KS_CWD/.eslintrc.js
 npm_lock_file=package-lock.json
 
 # Check .eslintrc.js
@@ -16,7 +16,7 @@ function airbnb_base() {
     npm info "$pkg_name@latest" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' | xargs yarn add --save-dev "$pkg_name@latest"
   fi
 
-  cp "$KS_CONFIG_ROOT/$KS_CONFIG_DIR_NAME/modules/eslint/browser-airbnb.js" $eslint_file
+  cp "KS_PROJECT_DIR/modules/eslint/browser-airbnb.js" $eslint_file
 }
 
 # See: https://github.com/iamturns/eslint-config-airbnb-typescript
@@ -29,7 +29,7 @@ function airbnb_base_ts() {
     npm info "$pkg_name@latest" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' | xargs yarn add --save-dev "$pkg_name@latest"
   fi
 
-  cp "$KS_CONFIG_ROOT/$KS_CONFIG_DIR_NAME/modules/eslint/browser-airbnb-ts.js" $eslint_file
+  cp "KS_PROJECT_DIR/modules/eslint/browser-airbnb-ts.js" $eslint_file
 }
 
 # See: https://github.com/prettier/eslint-plugin-prettie
@@ -40,5 +40,5 @@ function with_prettier() {
     yarn add --save-dev prettier eslint-plugin-prettier eslint-config-prettier
   fi
 
-  cp "$KS_CONFIG_ROOT/$KS_CONFIG_DIR_NAME/modules/eslint/browser-airbnb-ts-prettier.js" $eslint_file
+  cp "KS_PROJECT_DIR/modules/eslint/browser-airbnb-ts-prettier.js" $eslint_file
 }
