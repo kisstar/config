@@ -32,7 +32,7 @@ set smartcase
 set incsearch
 set hlsearch
 
-" 颜色
+" Color
 syntax on
 colorscheme darkblue
 
@@ -45,3 +45,12 @@ filetype plugin on
 " Key mapping
 "--------------
 let mapleader = ";"
+
+" Fast to the beginning or end of a line
+map H ^
+map L $
+
+" Close current window
+nmap <Leader>q :q<CR>
+" Save current window contents
+nmap <Leader>w :w<CR>
