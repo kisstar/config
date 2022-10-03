@@ -13,7 +13,8 @@ function get_prj() {
     git clone https://github.com/kisstar/config.git $KS_CONFIG_DIR_NAME
   elif [ $(command -v wget) ]; then
     wget https://github.com/kisstar/config/archive/refs/heads/master.zip -O .ks-config.zip
-    unzip -d $KS_CONFIG_DIR_NAME .ks-config.zip
+    unzip .ks-config.zip
+    mv config-master $KS_CONFIG_DIR_NAME
     rm -rf .ks-config.zip
   else
     echo '[ERROR] Sorry, you need to install git or wget first.'
