@@ -7,6 +7,7 @@ function includes() {
   done
 }
 
+# Select the configuration module to use
 function choose_conf() {
   tmp_str=$(print_info 'Please specify the configuration you want to use [vim/npm/???] ')
 
