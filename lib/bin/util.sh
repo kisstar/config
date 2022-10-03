@@ -1,3 +1,4 @@
+# Confirm whether the configuration is global or local
 function is_conf_global() {
   tmp_str=$(print_info 'Please specify the scope to be configured [global/local] ')
 
@@ -20,6 +21,7 @@ function is_conf_global() {
   fi
 }
 
+# Confirm whether to use the basic configuration
 function only_simple() {
   tmp_str=$(print_info 'Do you want to set only the simplest configuration? [y/n] ')
   read -p "$tmp_str" ans

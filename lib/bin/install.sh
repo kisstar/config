@@ -7,12 +7,16 @@ readonly KS_CWD=$(pwd)
 
 cd $KS_CONFIG_ROOT
 
-# Ensure git exists
-function clone_prj() {
+# Get Project
+function get_prj() {
   if [ $(command -v git) ]; then
-    git clone $*
+    git clone https://github.com/kisstar/config.git $KS_CONFIG_DIR_NAME
+  elif [ $(command -v wget) ]; then
+    wget https://github.com/kisstar/config/archive/refs/heads/master.zip -O .ks-config.zip
+    unzip -d $KS_CONFIG_DIR_NAME .ks-config.zip
+    rm -rf .ks-config.zip
   else
-    echo '[ERROR] Sorry, you need to install git first.'
+    echo '[ERROR] Sorry, you need to install git or wget first.'
     exit
   fi
 }
@@ -24,10 +28,10 @@ if [ -d $KS_CONFIG_DIR_NAME ]; then
 
   if [ "$ans" == 'y' ]; then
     rm -rf $KS_CONFIG_DIR_NAME
-    clone_prj https://github.com/kisstar/config.git $KS_CONFIG_DIR_NAME
+    get_prj
   fi
 else
-  clone_prj https://github.com/kisstar/config.git $KS_CONFIG_DIR_NAME
+  get_prj
 fi
 
 # Call log script

@@ -1,3 +1,4 @@
+# Ensure that the specified directory does not exist
 function ensure_no_folder() {
   filename=$1
   name=${filename##*/}
@@ -24,6 +25,7 @@ function ensure_no_folder() {
   fi
 }
 
+# Ensure that the specified file does not exist
 function ensure_no_file() {
   filename=$1
   name=${filename##*/}
