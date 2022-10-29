@@ -1,18 +1,25 @@
 #!/bin/bash
 
 eslint_file=$KS_CWD/.eslintrc.js
-npm_lock_file=package-lock.json
+npm_lock_file=$KS_CWD/package-lock.json
 # Currently supported type
-eslint_type_arr=('0', '1' '2' '3')
+eslint_type_arr=('0' '1' '2' '3')
 
+cd $KS_CWD
 # Check .eslintrc.js
 ensure_no_file $eslint_file
+
+function includes() {
+  for item in ${eslint_type_arr[@]}; do
+    [ "$item" == "$1" ] && return 0
+  done
+}
 
 # See: https://github.com/airbnb/javascript
 function airbnb_base() {
   pkg_name=eslint-config-airbnb-base
 
-  if [ -d $npm_lock_file ]; then
+  if [ -f $npm_lock_file ]; then
     npm info "$pkg_name@latest" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' | xargs npm install --save-dev "$pkg_name@latest"
   else
     npm info "$pkg_name@latest" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' | xargs yarn add --save-dev "$pkg_name@latest"
@@ -25,7 +32,7 @@ function airbnb_base() {
 function airbnb_base_ts() {
   pkg_name=eslint-config-airbnb-typescript
 
-  if [ -d $npm_lock_file ]; then
+  if [ -f $npm_lock_file ]; then
     npm info "$pkg_name@latest" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' | xargs npm install --save-dev "$pkg_name@latest"
   else
     npm info "$pkg_name@latest" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' | xargs yarn add --save-dev "$pkg_name@latest"
@@ -36,7 +43,7 @@ function airbnb_base_ts() {
 
 # See: https://github.com/prettier/eslint-plugin-prettie
 function with_prettier() {
-  if [ -d $npm_lock_file ]; then
+  if [ -f $npm_lock_file ]; then
     npm install --save-dev prettier eslint-plugin-prettier eslint-config-prettier
   else
     yarn add --save-dev prettier eslint-plugin-prettier eslint-config-prettier
@@ -46,7 +53,7 @@ function with_prettier() {
 }
 
 # Currently supported configuration types
-function print_slect() {
+function print_types() {
   print_info 'Currently supported configurations include the following:'
   print_info '0: Official basic configuration'
   print_info '1: Airbnb JavaScript style'
@@ -57,16 +64,16 @@ function print_slect() {
 # Execute the corresponding script according to the selected type
 function exec_slect() {
   case $1 in
-  0)
+  '0')
     npm init @eslint/config
     ;;
-  1)
+  '1')
     airbnb_base
     ;;
-  2)
+  '2')
     airbnb_base_ts
     ;;
-  3)
+  '3')
     airbnb_base_ts
     with_prettier
     ;;
@@ -78,10 +85,10 @@ function exec_slect() {
 
 # Select the configuration module to use
 function choose_conf() {
-  tmp_str=$(print_info 'Please specify the configuration you want to use [1/2/???] ')
+  tmp_str=$(print_info 'Please specify the configuration you want to use [0/1/???] ')
 
   while true; do
-    print_slect
+    print_types
     read -p "$tmp_str" ans
 
     if [ "$ans" ]; then
@@ -96,3 +103,5 @@ function choose_conf() {
     fi
   done
 }
+
+choose_conf
