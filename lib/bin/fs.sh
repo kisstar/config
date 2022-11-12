@@ -6,7 +6,8 @@ function ensure_no_folder() {
 
   if [ -d $filename ]; then
     print_err "You already have a $name folder in $filename"
-    read -p 'Would you like to backup this folder first? [y/n] ' ans
+    tmp_str=$(print_info 'Would you like to backup this folder first? [y/n] ')
+    read -p "$tmp_str" ans
 
     if [ "$ans" == 'y' ]; then
       print_info "Backup your original $filename to $filename-$(date +%Y%m%d)-$backup_rand"
@@ -33,7 +34,8 @@ function ensure_no_file() {
 
   if [ -f $filename ]; then
     print_err "There's a $name file in $filename"
-    read -p 'Would you like to backup this file first? [y/n] ' ans
+    tmp_str=$(print_info 'Would you like to backup this file first? [y/n] ')
+    read -p "$tmp_str" ans
 
     if [ "$ans" == 'y' ]; then
       print_info "Backup your original $filename to $filename-$(date +%Y%m%d)-$backup_rand"

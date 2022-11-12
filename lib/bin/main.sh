@@ -7,11 +7,22 @@ function includes() {
   done
 }
 
+# Currently supported modules
+function print_modules() {
+  print_info 'Currently supported modules include the following:'
+  print_info 'vim: a highly configurable text editor'
+  print_info 'npm: a JavaScript package manager'
+  print_info 'yarn: a modern package manager split into various packages'
+  print_info 'git: a free and open source distributed version control system'
+  print_info 'eslint: a tool for find and fix JavaScript code problems'
+}
+
 # Select the configuration module to use
 function choose_conf() {
   tmp_str=$(print_info 'Please specify the configuration you want to use [vim/npm/???] ')
 
   while true; do
+    print_modules
     read -p "$tmp_str" ans
 
     if [ "$ans" ]; then
