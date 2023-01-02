@@ -2,7 +2,7 @@ module.exports = {
   root: true,
   env: {
     browser: true,
-    es2021: true,
+    es6: true,
   },
   plugins: ['prettier'],
   extends: [
@@ -14,9 +14,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
-    // parserOptions: {
-    //   project: './tsconfig.json',
-    // },
+    project: './tsconfig.json',
   },
   rules: {
     'prettier/prettier': 'error',
