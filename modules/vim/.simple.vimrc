@@ -54,3 +54,13 @@ map L $
 nmap <Leader>q :q<CR>
 " Save current window contents
 nmap <Leader>w :w<CR>
+
+" 将删除和剪切的内容放到黑洞寄存器中
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d
+nnoremap <leader>x "_x
+vnoremap <leader>x "_x
+
+" 粘贴而不清除复制寄存器
+nnoremap <leader>p "0p
+vnoremap <leader>p "0p
