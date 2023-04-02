@@ -9,6 +9,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-repeat'
   Plug 'terryma/vim-multiple-cursors'
+  Plug 'voldikss/vim-floaterm'
 call plug#end()
 
 "--------------
@@ -17,6 +18,7 @@ call plug#end()
 set encoding=utf-8
 scriptencoding utf-8
 set noswapfile
+set nocompatible
 set clipboard=unnamed
 
 "--------------

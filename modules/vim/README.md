@@ -16,5 +16,6 @@ Vim 是一个从 `vi` 发展出来的文本编辑器。
 - [tpope/vim-surround](https://github.com/tpope/vim-surround)
 - [tpope/vim-repeat](https://github.com/tpope/vim-repeat)
 - [terryma/vim-multiple-curstomtom/tcomment_vim](https://github.com/terryma/vim-multiple-curstomtom/tcomment_vim)
+- [voldikss/vim-floaterm](https://github.com/voldikss/vim-floaterm)
 
 精简版的配置将不包含插件的安装，仅做一些简单的配置（软连项目的 `modules/vim/.simple.vimrc` 文件到用户家目录）。
