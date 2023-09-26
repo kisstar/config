@@ -7,9 +7,16 @@ call plug#begin('~/.vim/plugged')
   Plug 'scrooloose/nerdtree'
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'tpope/vim-surround'
+  Plug 'jiangmiao/auto-pairs' " Insert or delete brackets, parens, quotes in pair
   Plug 'tpope/vim-repeat'
   Plug 'terryma/vim-multiple-cursors'
-  Plug 'voldikss/vim-floaterm'
+  Plug 'voldikss/vim-floaterm' " Terminal manager
+  " Git
+  Plug 'airblade/vim-gitgutter' " Shows a git diff in the sign column
+  Plug 'tpope/vim-fugitive'
+  " Files search
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
 call plug#end()
 
 "--------------
