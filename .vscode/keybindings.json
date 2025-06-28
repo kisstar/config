@@ -1,0 +1,210 @@
+// Place your key bindings in this file to override the defaults
+[
+  // -------------------- 开发、日志 --------------------
+  {
+    "key": "cmd+k l",
+    "command": "editor.action.insertSnippet",
+    "when": "editorTextFocus",
+    "args": {
+      "snippet": "console.log('$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE [$CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND] ${1:$RANDOM_HEX}: ', $0);"
+    }
+  },
+  // -------------------- 文件资源管理 --------------------
+  // 创建新文件
+  {
+    "key": "m a",
+    "command": "explorer.newFile",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
+  },
+  // 创建新目录
+  {
+    "key": "m shift+a",
+    "command": "explorer.newFolder",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
+  },
+  // 删除文件
+  {
+    "key": "m d",
+    "command": "deleteFile",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
+  },
+  // 重命名
+  {
+    "key": "m m",
+    "command": "renameFile",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+  // 在操作系统中显示文件
+  {
+    "key": "m r",
+    "command": "revealFileInOS",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus || editorTextFocus && inputFocus && vim.mode == 'Normal'"
+  },
+  // 复制绝对路径
+  {
+    "key": "m p",
+    "command": "copyFilePath",
+    "when": "!editorFocus && !inputFocus"
+  },
+  // 复制相对路径
+  {
+    "key": "m shift+p",
+    "command": "copyRelativeFilePath",
+    "when": "!editorFocus && !inputFocus"
+  },
+  // 在指定文件中查找
+  {
+    "key": "m f",
+    "command": "filesExplorer.findInFolder",
+    "when": "explorerResourceIsFolder && explorerViewletVisible && filesExplorerFocus && !inputFocus"
+  },
+  // -------------------- 游标控制 --------------------
+  // 在自动补全提示中向上移动
+  {
+    "key": "ctrl+k",
+    "command": "selectPrevSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+  // 在快速打开的搜索结果中向下移动
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.quickOpenSelectNext",
+    "when": "inQuickOpen"
+  },
+  // 在快速打开的搜索结果中向上移动
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.quickOpenSelectPrevious",
+    "when": "inQuickOpen"
+  },
+  // Search Input Box
+  {
+    "key": "ctrl+j",
+    "command": "search.focus.nextInputBox",
+    "when": "inSearchEditor && inputBoxFocus || inputBoxFocus && searchViewletVisible"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "search.focus.previousInputBox",
+    "when": "inSearchEditor && inputBoxFocus || inputBoxFocus && searchViewletVisible && !searchInputBoxFocus"
+  },
+  // 在面板之间切换
+  {
+    "key": "ctrl+h",
+    "command": "workbench.action.previousPanelView",
+    "when": "terminal.active"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "workbench.action.nextPanelView",
+    "when": "terminal.active && !terminalFocus"
+  },
+  // Poblems 面板
+  {
+    "key": "ctrl+j",
+    "command": "list.focusDown",
+    "when": "listFocus && !inputFocus"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "list.focusUp",
+    "when": "listFocus && !inputFocus"
+  },
+  // -------------------- 窗口切换 --------------------
+  {
+    "key": "ctrl+w h",
+    "command": "workbench.action.navigateLeft",
+    "when": "!inputFocus && !inQuickOpen && !suggestWidgetVisible && !parameterHintsVisible && !isInDiffEditor"
+  },
+  {
+    "key": "ctrl+w j",
+    "command": "workbench.action.navigateDown",
+    "when": "!inputFocus && !inQuickOpen && !suggestWidgetVisible && !parameterHintsVisible"
+  },
+  {
+    "key": "ctrl+w k",
+    "command": "workbench.action.navigateUp",
+    "when": "!inputFocus && !inQuickOpen && !suggestWidgetVisible && !parameterHintsVisible"
+  },
+  {
+    "key": "ctrl+w l",
+    "command": "workbench.action.navigateRight",
+    "when": "!inputFocus && !inQuickOpen && !suggestWidgetVisible && !parameterHintsVisible && !isInDiffEditor"
+  },
+  // 窗口开关（当未使用 WhichKey 时开启）
+  // {
+  //   "key": "space o",
+  //   "command": "workbench.action.toggleAuxiliaryBar",
+  //   "when": "!inputFocus || editorTextFocus && inputFocus && vim.mode == 'Normal'"
+  // },
+  // -------------------- Reference --------------------
+  {
+    "key": "o",
+    "command": "revealReference",
+    "when": "listFocus && referenceSearchVisible && !inputFocus && !treeElementCanCollapse && !treeElementCanExpand"
+  },
+  {
+    "key": "enter",
+    "command": "closeReferenceSearch",
+    "when": "listFocus && referenceSearchVisible && !inputFocus && !treeElementCanCollapse && !treeElementCanExpand"
+  },
+  // -------------------- Search --------------------
+  // see: https://code.visualstudio.com/updates/v1_43#_search-editors
+  {
+    "key": "ctrl+shift+f",
+    "command": "search.action.openEditor"
+  },
+  {
+    "key": "ctrl+c",
+    "command": "workbench.action.closeQuickOpen",
+    "when": "inQuickOpen"
+  },
+  {
+    "key": "ctrl+[",
+    "command": "workbench.action.closeQuickOpen",
+    "when": "inQuickOpen"
+  },
+  // -------------------- 主动建议面板 --------------------
+  {
+    "key": "ctrl+j",
+    "command": "selectNextSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+  {
+    "key": "ctrl+n",
+    "command": "-selectNextSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+  // -------------------- 修复建议面板 --------------------
+  {
+    "key": "ctrl+k",
+    "command": "selectPrevCodeAction",
+    "when": "codeActionMenuVisible"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "-selectPrevCodeAction",
+    "when": "codeActionMenuVisible"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "selectNextCodeAction",
+    "when": "codeActionMenuVisible"
+  },
+  {
+    "key": "ctrl+n",
+    "command": "-selectNextCodeAction",
+    "when": "codeActionMenuVisible"
+  },
+  // -------------------- 触发提示 --------------------
+  {
+    "key": "ctrl+h",
+    "command": "editor.action.triggerSuggest",
+    "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly && !suggestWidgetVisible"
+  },
+  {
+    "key": "ctrl+space",
+    "command": "-editor.action.triggerSuggest",
+    "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly && !suggestWidgetVisible"
+  }
+]

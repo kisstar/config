@@ -1,6 +1,7 @@
 // See: https://code.visualstudio.com/docs/getstarted/settings
 
 {
+  // ---------------------------------------- Basic start ----------------------------------------
   // 指定 Tab Size
   "editor.tabSize": 2,
   // 设置 Font Size
@@ -17,11 +18,138 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   // 保存的时候自动修复 ESLint/ESLint 插件中可自动修复的错误
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit"
   },
   "files.eol": "\n",
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
   // 失去焦点后自动保存
-  "files.autoSave": "onFocusChange"
+  "files.autoSave": "onFocusChange",
+  // ---------------------------------------- Basic end ----------------------------------------
+  // ---------------------------------------- Vim start ----------------------------------------
+  "vim.leader": ";",
+  "vim.easymotion": true,
+  "vim.foldfix": true, // 避免折叠自动打开
+  "vim.useSystemClipboard": true,
+  "vim.normalModeKeyBindings": [
+    // indent/outdent lines
+    {
+      "before": [">"],
+      "commands": ["editor.action.indentLines"]
+    },
+    {
+      "before": ["<"],
+      "commands": ["editor.action.outdentLines"]
+    },
+    // turn off search highlighting
+    {
+      "before": ["<C-n>"],
+      "commands": [":nohl"]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["L"],
+      "after": ["$"]
+    },
+    {
+      "before": ["H"],
+      "after": ["^"]
+    },
+    {
+      "before": ["<leader>", "q"],
+      "commands": [":q"]
+    },
+    {
+      "before": ["<leader>", "w"],
+      "commands": [":w"]
+    },
+    // -------------------- Code Actions --------------------
+    {
+      "before": ["<leader>", "a", "c"],
+      "commands": ["editor.action.triggerSuggest"]
+    },
+    // -------------------- Git OP --------------------
+    {
+      "before": ["<leader>", "g", "b"],
+      "commands": ["git.branch"]
+    },
+    {
+      "before": ["<leader>", "g", "j"],
+      "commands": ["workbench.action.editor.nextChange", "editor.action.dirtydiff.next"]
+    },
+    {
+      "before": ["<leader>", "g", "k"],
+      "commands": ["workbench.action.editor.previousChange", "editor.action.dirtydiff.previous"]
+    },
+    {
+      "before": ["<leader>", "g", "a"],
+      "commands": ["git.stageSelectedRanges"]
+    },
+    {
+      "before": ["<leader>", "g", "u"],
+      "commands": ["git.unstageSelectedRanges"]
+    },
+    {
+      "before": ["<leader>", "g", "r"],
+      "commands": ["git.revertSelectedRanges"]
+    },
+    {
+      "before": ["<leader>", "g", "c"],
+      "commands": ["git.commit"]
+    },
+    // -------------------- Reference OP --------------------
+    {
+      "before": ["<leader>", "s", "r"],
+      "commands": ["editor.action.referenceSearch.trigger"]
+    },
+    {
+      "before": ["<leader>", "s", "R"],
+      "commands": ["references-view.findReferences"]
+    },
+    // -------------------- Problem OP --------------------
+    {
+      "before": ["<leader>", "e", "j"],
+      "commands": ["editor.action.marker.next"]
+    },
+    {
+      "before": ["<leader>", "e", "k"],
+      "commands": ["editor.action.marker.prev"]
+    },
+    {
+      "before": ["<leader>", "e", "f"],
+      "commands": ["editor.action.quickFix"]
+    },
+    // -------------------- Format OP --------------------
+    {
+      "before": ["<leader>", "f"],
+      "commands": ["editor.action.formatDocument"]
+    }
+    // -------------------- Which Key --------------------
+    // {
+    //   "before": ["<space>"],
+    //   "commands": ["whichkey.show"]
+    // }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    // -------------------- Git OP --------------------
+    {
+      "before": ["<leader>", "g", "a"],
+      "commands": ["git.stageSelectedRanges"]
+    },
+    {
+      "before": ["<leader>", "g", "u"],
+      "commands": ["git.unstageSelectedRanges"]
+    },
+    {
+      "before": ["<leader>", "g", "r"],
+      "commands": ["git.revertSelectedRanges"]
+    },
+    // -------------------- Format OP --------------------
+    {
+      "before": ["<leader>", "f"],
+      "commands": ["editor.action.formatSelection"]
+    }
+  ]
+  // ---------------------------------------- Vim end ----------------------------------------
 }
