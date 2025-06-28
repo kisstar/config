@@ -7,12 +7,5 @@
   "proseWrap": "never",
   "endOfLine": "lf",
   "arrowParens": "avoid",
-  "overrides": [
-    {
-      "files": ".{prettierrc,stylelintrc,eslintrc,markdownlintrc,huskyrc,lintstagedrc}",
-      "options": {
-        "parser": "json"
-      }
-    }
-  ]
+  "overrides": []
 }
