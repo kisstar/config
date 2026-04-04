@@ -1,3 +1,5 @@
+[core]
+	ignorecase = false
 [format]
   pretty = %C(yellow bold)%d%Creset%n%C(yellow)%H%Creset on %C(cyan bold)%ad%Creset by %C(magenta bold)%aN%Creset%n%n%C(white bold)%B%Creset%n
 [log]

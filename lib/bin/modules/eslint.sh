@@ -1,9 +1,29 @@
 #!/bin/bash
 
+# Parse command line arguments
+parse_args "$@"
+
 eslint_file=$KS_CWD/.eslintrc.js
 npm_lock_file=$KS_CWD/package-lock.json
 # Currently supported type
 eslint_type_arr=('0' '1' '2' '3')
+
+# Handle relink mode
+if [ "$RELINK_MODE" = true ]; then
+  print_info "Re-linking ESLint configuration..."
+
+  # Remove existing file/link
+  if [ -L "$eslint_file" ] || [ -f "$eslint_file" ]; then
+    safe_rm "$eslint_file"
+  fi
+
+  # For ESLint, we need to copy the appropriate config based on installed type
+  # This is a simplified relink - in practice, the user should run the install again
+  print_warn "ESLint relink requires re-running the configuration selection"
+  print_info "Please run: install.sh eslint"
+
+  exit 0
+fi
 
 cd $KS_CWD
 # Check .eslintrc.js
@@ -19,37 +39,49 @@ function includes() {
 function airbnb_base() {
   pkg_name=eslint-config-airbnb-base
 
-  if [ -f $npm_lock_file ]; then
-    npm info "$pkg_name@latest" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' | xargs npm install --save-dev "$pkg_name@latest"
+  if [ "$DRY_RUN" = true ]; then
+    echo "  [WOULD INSTALL] $pkg_name and peer dependencies"
   else
-    npm info "$pkg_name@latest" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' | xargs pnpm add --save-dev "$pkg_name@latest"
+    if [ -f $npm_lock_file ]; then
+      npm info "$pkg_name@latest" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' | xargs npm install --save-dev "$pkg_name@latest"
+    else
+      npm info "$pkg_name@latest" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' | xargs pnpm add --save-dev "$pkg_name@latest"
+    fi
   fi
 
-  cp "$KS_PROJECT_DIR/modules/eslint/browser-airbnb.js" $eslint_file
+  safe_cp "$KS_PROJECT_DIR/modules/eslint/browser-airbnb.js" $eslint_file
 }
 
 # See: https://github.com/iamturns/eslint-config-airbnb-typescript
 function airbnb_base_ts() {
   pkg_name=eslint-config-airbnb-typescript
 
-  if [ -f $npm_lock_file ]; then
-    npm info "$pkg_name@latest" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' | xargs npm install --save-dev "$pkg_name@latest"
+  if [ "$DRY_RUN" = true ]; then
+    echo "  [WOULD INSTALL] $pkg_name and peer dependencies"
   else
-    npm info "$pkg_name@latest" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' | xargs pnpm add --save-dev "$pkg_name@latest"
+    if [ -f $npm_lock_file ]; then
+      npm info "$pkg_name@latest" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' | xargs npm install --save-dev "$pkg_name@latest"
+    else
+      npm info "$pkg_name@latest" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' | xargs pnpm add --save-dev "$pkg_name@latest"
+    fi
   fi
 
-  cp "$KS_PROJECT_DIR/modules/eslint/browser-airbnb-ts.js" $eslint_file
+  safe_cp "$KS_PROJECT_DIR/modules/eslint/browser-airbnb-ts.js" $eslint_file
 }
 
 # See: https://github.com/prettier/eslint-plugin-prettie
 function with_prettier() {
-  if [ -f $npm_lock_file ]; then
-    npm install --save-dev prettier eslint-plugin-prettier eslint-config-prettier
+  if [ "$DRY_RUN" = true ]; then
+    echo "  [WOULD INSTALL] prettier eslint-plugin-prettier eslint-config-prettier"
   else
-    pnpm add --save-dev prettier eslint-plugin-prettier eslint-config-prettier
+    if [ -f $npm_lock_file ]; then
+      npm install --save-dev prettier eslint-plugin-prettier eslint-config-prettier
+    else
+      pnpm add --save-dev prettier eslint-plugin-prettier eslint-config-prettier
+    fi
   fi
 
-  cp "$KS_PROJECT_DIR/modules/eslint/browser-airbnb-ts-prettier.js" $eslint_file
+  safe_cp "$KS_PROJECT_DIR/modules/eslint/browser-airbnb-ts-prettier.js" $eslint_file
 }
 
 # Currently supported configuration types
@@ -65,7 +97,11 @@ function print_types() {
 function exec_slect() {
   case $1 in
   '0')
-    npm init @eslint/config
+    if [ "$DRY_RUN" = false ]; then
+      npm init @eslint/config
+    else
+      echo "  [WOULD EXECUTE] npm init @eslint/config"
+    fi
     ;;
   '1')
     airbnb_base
@@ -105,3 +141,7 @@ function choose_conf() {
 }
 
 choose_conf
+
+# Record installation
+record_installation "eslint"
+

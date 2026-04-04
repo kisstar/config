@@ -5,6 +5,11 @@ function ensure_no_folder() {
   backup_rand=$RANDOM
 
   if [ -d $filename ]; then
+    if [ "$DRY_RUN" = true ]; then
+      echo "  [WOULD PROMPT] Handle existing folder: $filename"
+      return 0
+    fi
+
     print_err "You already have a $name folder in $filename"
     tmp_str=$(print_info 'Would you like to backup this folder first? [y/n] ')
     read -p "$tmp_str" ans
@@ -33,6 +38,11 @@ function ensure_no_file() {
   backup_rand=$RANDOM
 
   if [ -f $filename ]; then
+    if [ "$DRY_RUN" = true ]; then
+      echo "  [WOULD PROMPT] Handle existing file: $filename"
+      return 0
+    fi
+
     print_err "There's a $name file in $filename"
     tmp_str=$(print_info 'Would you like to backup this file first? [y/n] ')
     read -p "$tmp_str" ans
@@ -53,3 +63,4 @@ function ensure_no_file() {
     fi
   fi
 }
+
